@@ -14,6 +14,15 @@ module.exports = function(sequelize, DataTypes){
        validate: {
          len: [7,100]
        }
+      }
+     }, {
+     hooks: {
+       beforeValidate: function(user,options){
+          //user.email to lower IF string
+          if(typeof user.email === 'string'){
+            user.email = user.email.toLowerCase();
+          }
+       }
      }
    });
 };
